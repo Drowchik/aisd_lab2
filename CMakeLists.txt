@@ -15,10 +15,10 @@ if(MSVC)
 endif()
 
 # Объявляем библиотеку
-add_library(linked_list SHARED "src/linked_list.cc")
+add_library(linked_list SHARED "src/linked_list.cpp")
 target_include_directories(linked_list PUBLIC "include")
 
 
 #Подключение консольного приложения
-add_executable(console "console/console.cc")
+add_executable(console "console.cpp")
 target_link_libraries(console linked_list)
