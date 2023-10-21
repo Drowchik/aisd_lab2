@@ -1,4 +1,4 @@
-#include "src/linked_list.cpp"
+#include "linked_list/linked_list.h"
 #include <iostream>
 using namespace std;
 using namespace Tlink;

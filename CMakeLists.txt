@@ -15,10 +15,17 @@ if(MSVC)
 endif()
 
 # Объявляем библиотеку
-add_library(linked_list SHARED "src/linked_list.cpp")
+add_library(linked_list SHARED "include/linked_list/linked_list.h" "src/linked_list.cpp")
 target_include_directories(linked_list PUBLIC "include")
 
+include(FetchContent)
+FetchContent_Declare(googletest URL https://github.com/google/googletest/archive/6b63c98ac43efc992122f1da12aaf0a0e0658206.zip)
+set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+FetchContent_MakeAvailable(googletest)
+
+add_executable(linked_list_tests "tests/linked_list_tests.cpp")
+target_link_libraries(linked_list_tests linked_list GTest::gtest_main)
 
 #Подключение консольного приложения
-add_executable(console "console.cpp")
+add_executable(console "console/console.cpp")
 target_link_libraries(console linked_list)
