@@ -8,7 +8,7 @@ namespace Tlink{
 
 	template<typename T>
 	struct Node {
-		Node* _next;
+		Node<T>* _next;
 		T _data;
 		Node(const T& data, Node<T>* next = nullptr) : _data(data), _next(next) {}
 	};
@@ -26,7 +26,6 @@ namespace Tlink{
 				ptr = ptr->_next;
 			}
 		}
-
 
 		~LinkedList() {
 			while (_head)
@@ -130,14 +129,29 @@ namespace Tlink{
 			return ptr->_data;
 
 		}
-		//void delete_node(const T& data) {
-		//	Node<T>* ptr = _head;
-		//	while (ptr) {
-		//		if (ptr->_data == data) {
-		//			auto temp = ptr;
-		//		}
-		//	}
-		//}
+		void deelte_node(const T& data) {
+			Node<T>* ptr = _head;
+			Node<T>* ptr1 = nullptr;
+			while (_head && _head->_data == data) {
+				_head = ptr->_next;
+				delete ptr;
+				ptr = _head;
+			}
+
+			while (ptr) {
+				if (ptr->_data == data) {
+					ptr1->_next = ptr->_next;
+					delete ptr;
+					ptr = ptr1->_next;
+				}
+				else {
+					ptr1 = ptr;
+					ptr = ptr->_next;
+				}
+			}
+
+		}
+
 		ostream& print(ostream& os = cout) const {
 			Node<T>* ptr = _head;
 			while (ptr) {
