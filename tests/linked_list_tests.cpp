@@ -134,3 +134,19 @@ TEST(LinkedTest, delete_node) {
 	EXPECT_THROW(c[4], out_of_range);
 
 }
+
+TEST(LinkedTest, size) {
+	LinkedList<int> c;
+	EXPECT_EQ(c.size(), 0);
+	c.push_head(5);
+	EXPECT_EQ(c.size(), 1);
+	c.push_head(5);
+	c.push_head(7);
+	c.push_head(7);
+	c.push_head(5);
+	c.push_head(7);
+	c.push_head(5);
+	c.push_head(7);
+	c.push_head(5);
+	EXPECT_EQ(c.size(), 9);
+}

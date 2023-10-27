@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <stdexcept>
+#include <random>
 
 using namespace std;
 
@@ -18,6 +19,20 @@ namespace Tlink {
 		Node<T>* _head;
 	public:
 		LinkedList() : _head(nullptr) {}
+
+		LinkedList(size_t size, size_t* size_word) : _head(nullptr) {
+			size_t i = 0;
+			for (size, i; size != 0; --size, i++) {
+				random_device rd;
+				mt19937 generator(rd());
+				uniform_int_distribution<int> distribution('a', 'z');
+				string rand_str(size_word[i], '\0');
+				for (auto& dis : rand_str)
+					dis = distribution(generator);
+
+				push_tail(rand_str);
+			}
+		}
 
 		LinkedList(const LinkedList& a) : _head(nullptr) {
 			Node<T>* ptr = a._head;
@@ -37,6 +52,19 @@ namespace Tlink {
 
 		}
 
+		Node<T>* get_head() const {
+			return _head;
+		}
+
+		size_t size() {
+			Node<T>* ptr = _head;
+			size_t size = 0;
+			while (ptr) {
+				ptr = ptr->_next;
+				size++;
+			}
+			return size;
+		}
 		LinkedList& operator=(LinkedList a) {
 			swap(a);
 			return*this;
@@ -162,4 +190,16 @@ namespace Tlink {
 			return os;
 		}
 	};
+
+	template <typename T>
+	ostream& print(const LinkedList<T>& a, ostream& os = cout) {
+		Node<T>* ptr = a.get_head();
+		while (ptr) {
+			os << ptr->_data << '/';
+			ptr = ptr->_next;
+		}
+		os << endl;
+		return os;
+
+	}
 }

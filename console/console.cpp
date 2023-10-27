@@ -1,28 +1,15 @@
 #include "linked_list/linked_list.h"
 #include <iostream>
+#include <string>
 using namespace std;
 using namespace Tlink;
 
-void sum(LinkedList<int>& a) {
-	LinkedList<int> c;
-	c.push_head(5);
-	c.push_head(7);
-	c.push_head(5);
-	c.push_head(5);
-	a.push_head(c);
-}
+
+
 int main() {
-	LinkedList<int> c;
-	c.push_head(5);
-	c.push_head(5);
-	c.push_head(7);
-	c.push_head(7);
-	c.push_head(5);
-	c.push_head(7);
-	c.push_head(5);
-	c.push_head(7);
-	c.push_head(5);
-	c.deelte_node(5);
-	c.print();
-	return 0;
+    size_t b[5] {1, 5, 3, 4, 5};
+    LinkedList<string> a(5, b);
+    print(a);
+    return 0;
+
 }
