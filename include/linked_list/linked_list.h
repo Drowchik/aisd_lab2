@@ -2,6 +2,9 @@
 #include <iostream>
 #include <stdexcept>
 #include <random>
+#include <fstream>
+#include <string>
+#include <sstream>
 
 using namespace std;
 
@@ -32,6 +35,7 @@ namespace Tlink {
 
 				push_tail(rand_str);
 			}
+
 		}
 
 		LinkedList(const LinkedList& a) : _head(nullptr) {
@@ -65,6 +69,7 @@ namespace Tlink {
 			}
 			return size;
 		}
+
 		LinkedList& operator=(LinkedList a) {
 			swap(a);
 			return*this;
@@ -92,7 +97,7 @@ namespace Tlink {
 		}
 
 		void push_head(LinkedList a) {
-			a.push_tail(*this);
+			a.push_tail(*this); 
 			swap(a);
 		}
 
@@ -200,6 +205,29 @@ namespace Tlink {
 		}
 		os << endl;
 		return os;
-
 	}
+
+	string add_string(const LinkedList<string>& a) {
+		std::ostringstream oss;
+		Node<string>* ptr = a.get_head();
+		oss << ptr->_data << ":/";
+		ptr->_next;
+		while (ptr) {
+			oss<<ptr->_data<< '/';
+			ptr = ptr->_next;
+		}
+		string str = oss.str();
+		return str;
+	}
+
+	string re_string(string a) {
+		a = "C:/laba/test5.txt";
+		return a;
+	}
+
+
+
+
+	
+
 }

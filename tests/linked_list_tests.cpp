@@ -111,8 +111,10 @@ TEST(LinkedTest, pop_tail_list3) {
 	LinkedList<int> a;
 	a.push_tail(5);
 	a.push_tail(4);
+	a.push_tail(3);
 	a.pop_tail();
-	EXPECT_EQ(a[0], 5);
+	EXPECT_EQ(a[1], 4);
+	EXPECT_THROW(a[2], out_of_range);
 }
 
 TEST(LinkedTest, delete_node) {
@@ -121,6 +123,7 @@ TEST(LinkedTest, delete_node) {
 	c.push_head(5);
 	c.push_head(7);
 	c.push_head(7);
+	c.push_head(5);
 	c.push_head(5);
 	c.push_head(7);
 	c.push_head(5);
